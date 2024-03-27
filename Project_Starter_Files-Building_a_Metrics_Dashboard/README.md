@@ -2,22 +2,64 @@
 
 ## Verify the monitoring installation
 
-*TODO:* run `kubectl` command to show the running pods and services for all components. Take a screenshot of the output and include it here to verify the installation
+*TODO:* run `kubectl` command to show the running pods and services for all components. Take a screenshot of the output and include it here to verify the installation - Captured
 
 ## Setup the Jaeger and Prometheus source
-*TODO:* Expose Grafana to the internet and then setup Prometheus as a data source. Provide a screenshot of the home page after logging into Grafana.
+*TODO:* Expose Grafana to the internet and then setup Prometheus as a data source. Provide a screenshot of the home page after logging into Grafana. - Captured
+
+* Helm installed in virtual machine: 
+
+* Preparing to install helm into /usr/local/bin 
+* helm installed into /usr/local/bin/helm
+
+NAME: prometheus
+LAST DEPLOYED: Tue Mar 26 21:42:55 2024
+NAMESPACE: monitoring
+STATUS: deployed
+REVISION: 1
+NOTES:
+kube-prometheus-stack has been installed. Check its status by running:
+  kubectl --namespace monitoring get pods -l "release=prometheus"
+
+Visit https://github.com/prometheus-operator/kube-prometheus for instructions on how to create & configure Alertmanager and Prometheus instances using the Operator.
+
 
 ## Create a Basic Dashboard
-*TODO:* Create a dashboard in Grafana that shows Prometheus as a source. Take a screenshot and include it here.
+*TODO:* Create a dashboard in Grafana that shows Prometheus as a source. Take a screenshot and include it here. - Captured
 
 ## Describe SLO/SLI
 *TODO:* Describe, in your own words, what the SLIs are, based on an SLO of *monthly uptime* and *request response time*.
+SLO is the goal that we want to achieve, and SLI is the metric that we use to measure the SLO. For example, if we have an SLO of 99.95% uptime per month, we can use the SLI of the number of requests that are successful in a month to measure the SLO. If we have an SLO of 200ms response time, we can use the SLI of the average response time of requests in a month to measure the SLO.
 
 ## Creating SLI metrics.
 *TODO:* It is important to know why we want to measure certain metrics for our customer. Describe in detail 5 metrics to measure these SLIs. 
 
+### Monthly Uptime
+
+* Availability Percentage: This metric represents the percentage of time your service was available within a given month. It's calculated by dividing the total uptime by the total time in the month.
+
+* Downtime Duration: This metric measures the total duration of downtime experienced by your service in the month. It's important for understanding the impact of outages on your users.
+
+* Number of Incidents: Count the number of incidents or outages that occurred during the month. This metric helps in understanding the frequency and severity of service disruptions.
+
+* Mean Time Between Failures (MTBF): MTBF calculates the average time between failures or incidents. It provides an estimate of how frequently your service encounters issues.
+
+* Mean Time to Recover (MTTR): MTTR measures the average time taken to restore service after an incident. It helps in assessing the efficiency of your incident response and recovery processes.
+
+### Request Response Time
+
+* Average Response Time: This metric calculates the average time taken to respond to requests over a period of time. It's a fundamental metric for assessing the performance of your service.
+
+* Percentile Response Time: Analyze response times at different percentiles (e.g., 90th, 95th, and 99th percentiles). Percentile response times give you insights into the performance experienced by most users, including those in the tail end of the distribution.
+
+* Peak Response Time: Identify the maximum response time experienced during peak usage periods. This metric helps in understanding worst-case scenarios and capacity planning.
+
+* Response Time Distribution: Analyze the distribution of response times across different quantiles or time periods. It helps in identifying patterns, outliers, and areas for optimization.
+
+* Time to First Byte (TTFB): TTFB measures the time taken from when a request is sent until the first byte of the response is received. It's a critical component of response time, especially for web services.
+
 ## Create a Dashboard to measure our SLIs
-*TODO:* Create a dashboard to measure the uptime of the frontend and backend services We will also want to measure to measure 40x and 50x errors. Create a dashboard that show these values over a 24 hour period and take a screenshot.
+*TODO:* Create a dashboard to measure the uptime of the frontend and backend services We will also want to measure 40x and 50x errors. Create a dashboard that show these values over a 24-hour period and take a screenshot.
 
 ## Tracing our Flask App
 *TODO:*  We will create a Jaeger span to measure the processes on the backend. Once you fill in the span, provide a screenshot of it here. Also provide a (screenshot) sample Python file containing a trace and span code used to perform Jaeger traces on the backend service.
