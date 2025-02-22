@@ -34,11 +34,17 @@ def init_tracer(service):
             "sampler": {"type": "const", "param": 1},
             "logging": True,
             "reporter_batch_size": 1,
+            "local_agent": {
+                "reporting_host": "jaeger-collector.observability",  # ✅ Correct Jaeger service name
+                "reporting_port": 6831  # ✅ Use the correct UDP port for trace reporting
+            }
         },
         service_name=service,
         validate=True,
         metrics_factory=PrometheusMetricsFactory(service_name_label=service),
     )
+
+    logger.info(f"✅ Jaeger Tracer initialized for service: {service}")  # Add this log
 
     # this call also sets opentracing.tracer
     return config.initialize_tracer()
