@@ -1,6 +1,7 @@
-Flask>=2.1.0
-Jinja2==3.0.3
-MarkupSafe==2.0.1
+Flask==2.2.5
+Jinja2==3.1.2
+MarkupSafe==2.1.1  # ✅ Updated to match Werkzeug's requirement
 requests==2.23.0
-pylint==2.4.0
+pylint==2.15.0  # ✅ Updated to avoid invalid Requires-Python
 gunicorn==20.0.4
+prometheus_flask_exporter==0.20.3

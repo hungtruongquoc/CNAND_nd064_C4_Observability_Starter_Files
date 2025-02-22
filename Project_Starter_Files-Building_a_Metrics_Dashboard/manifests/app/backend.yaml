@@ -15,18 +15,21 @@ spec:
       containers:
       - name: backend
         # We advise you to build, push and use your own image, instead of using instructor's image.
-        image: 723567309652.dkr.ecr.us-east-1.amazonaws.com/backend-app:v5
+        image: 723567309652.dkr.ecr.us-east-1.amazonaws.com/backend-app:v11
         ports:
-        - containerPort: 8081
+        - containerPort: 8080
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: backend-service
+  labels:
+    app: backend  # ✅ Add this label
 spec:
   selector:
     app: backend
   ports:
-    - port: 8081
+    - name: http
+      port: 8081
       targetPort: 8080
   type: LoadBalancer

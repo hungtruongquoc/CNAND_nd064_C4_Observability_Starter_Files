@@ -13,6 +13,7 @@ ENV PROJECT_ID ${PROJECT_ID}
 
 # Install production dependencies.
 RUN apt-get update && \
+    apt-get install -y curl dnsutils && \
     pip install --upgrade pip && \
     pip install -r requirements.txt
 

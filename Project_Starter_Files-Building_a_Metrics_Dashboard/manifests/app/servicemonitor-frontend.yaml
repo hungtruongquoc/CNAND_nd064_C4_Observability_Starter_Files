@@ -1,0 +1,18 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: frontend-servicemonitor
+  namespace: monitoring
+  labels:
+    release: prometheus  # ✅ Must match your Prometheus release name
+spec:
+  selector:
+    matchLabels:
+      app: frontend  # ✅ Must match the label in frontend-service
+  endpoints:
+    - port: http  # ✅ Must match the service port name
+      path: /metrics
+      interval: 10s
+  namespaceSelector:
+    matchNames:
+      - default  # ✅ Namespace where frontend-service is running

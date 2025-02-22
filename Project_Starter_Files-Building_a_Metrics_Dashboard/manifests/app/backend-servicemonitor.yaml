@@ -1,0 +1,18 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: backend-servicemonitor
+  namespace: monitoring  # Ensure it's in the same namespace as Prometheus
+  labels:
+    release: prometheus  # This must match your Prometheus release name
+spec:
+  selector:
+    matchLabels:
+      app: backend  # ✅ Must match the label of your backend Service
+  endpoints:
+    - port: http  # ✅ This should match the Service port
+      path: /metrics
+      interval: 10s
+  namespaceSelector:
+    matchNames:
+      - default  # ✅ The namespace where your backend service is running

@@ -15,7 +15,7 @@ spec:
       containers:
       - name: frontend
         # We advise you to build, push and use your own image, instead of using instructor's image.
-        image: 723567309652.dkr.ecr.us-east-1.amazonaws.com/frontend-app:v10
+        image: 723567309652.dkr.ecr.us-east-1.amazonaws.com/frontend-app:v11
         ports:
         - containerPort: 8080
 ---
@@ -23,10 +23,13 @@ apiVersion: v1
 kind: Service
 metadata:
   name: frontend-service
+  labels:
+    app: frontend  # ✅ This label must match the ServiceMonitor selector
 spec:
   selector:
     app: frontend
   ports:
-    - port: 8080
+    - name: http
+      port: 8080
       targetPort: 8080
   type: LoadBalancer
