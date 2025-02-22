@@ -93,3 +93,13 @@ Description:
 
 ## Final Dashboard
 *TODO*: Create a Dashboard containing graphs that capture all the metrics of your KPIs and adequately representing your SLIs and SLOs. Include a screenshot of the dashboard here, and write a text description of what graphs are represented in the dashboard.  
+
+# References
+
+## To Access Jaeger UI
+Run this command first in a terminal and leave it open for monitoring the access.
+```bash
+kubectl port-forward -n observability svc/jaeger-query 16686:16686
+```
+Then open a browser and go to `http://localhost:16686/` to access the Jaeger UI.
+

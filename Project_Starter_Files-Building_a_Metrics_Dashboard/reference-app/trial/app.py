@@ -1,7 +1,7 @@
 import logging
 import re
 import requests
-
+from flask_cors import CORS
 
 from flask import Flask, jsonify, render_template
 from flask_opentracing import FlaskTracing
@@ -13,6 +13,8 @@ from prometheus_flask_exporter import PrometheusMetrics
 
 
 app = Flask(__name__)
+CORS(app)
+
 FlaskInstrumentor().instrument_app(app)
 RequestsInstrumentor().instrument()
 

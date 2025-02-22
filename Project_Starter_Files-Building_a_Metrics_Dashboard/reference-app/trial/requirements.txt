@@ -1,4 +1,6 @@
-Flask==1.1.2
+Flask==1.1.4
+Jinja2==2.11.3  # Last version that works with Flask 1.1.4
+MarkupSafe==1.1.1  # Compatible with Jinja2 2.11.3
 gunicorn==20.0.4
 jaeger-client==4.3.0
 prometheus-client==0.12.0
@@ -11,3 +13,5 @@ opentelemetry-sdk==0.12b0
 prometheus-flask-exporter==0.18.1
 pylint==2.4.0
 requests==2.23.0
+flask_opentracing==2.0.0
+flask_cors==3.0.10
